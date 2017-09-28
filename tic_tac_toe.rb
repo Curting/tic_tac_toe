@@ -71,10 +71,12 @@ class TicTacToe
   end
 
   def draw?
-    unless @board.include?(" ") && won?
+    # If there's no empty indexes and no one has won
+    !@board.include?(" ") && !won?
   end
 
   def game_over?
+    won? || draw?
   end
 
   def winner
