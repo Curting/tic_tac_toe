@@ -71,6 +71,7 @@ class TicTacToe
   end
 
   def draw?
+    unless @board.include?(" ") && won?
   end
 
   def game_over?
