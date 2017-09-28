@@ -99,26 +99,45 @@ class TicTacToe
       "O"
     end
   end
+end
 
-  def welcome_message
-    puts "Welcome to a game of Tic Tac Toe!"
-    puts " "
-    puts "The game is turn based. Player 1 is X and Player 2 is O."
-    puts " "
-    puts "Player 1 starts by entering a number between 1-9, which equals to"
-    puts "one of the 9 indexes on the board:"
-    puts " "
-    puts " 1 | 2 | 3 "
-    puts "-----------"
-    puts " 4 | 5 | 6 "
-    puts "-----------"
-    puts " 7 | 8 | 9 "
-    puts " "
-    puts "Good luck - and may the best player win!"
+def welcome_message
+  puts "Welcome to a game of Tic Tac Toe!"
+  puts " "
+  puts "The game is turn based. Player 1 is X and Player 2 is O."
+  puts " "
+  puts "Player 1 starts by entering a number between 1-9, which equals to"
+  puts "one of the 9 indexes on the board:"
+  puts " "
+  puts " 1 | 2 | 3 "
+  puts "-----------"
+  puts " 4 | 5 | 6 "
+  puts "-----------"
+  puts " 7 | 8 | 9 "
+  puts " "
+  puts "Good luck - and may the best player win!"
+end
+
+def new_game
+  game = TicTacToe.new
+  until game.game_over?
+    game.turn
+    game.display_board
+  end
+
+  if game.won?
+    puts "Player #{game.winner} has won! Congrats!"
+  elsif game.draw?
+    puts "The game is a draw :-("
+  else
+    puts "game_over is triggered but won? and draw? is false. wtf?"
   end
 end
 
 welcome_message
+new_game
+
+
 
 
 
