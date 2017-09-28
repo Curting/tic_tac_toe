@@ -79,10 +79,46 @@ class TicTacToe
     won? || draw?
   end
 
-  def winner
+
+  def winner # Refactor
+    if
+      # Horizontal
+      (@board[0] == @board[1] && @board[1] == @board[2] && @board[0] == "X") ||
+      (@board[3] == @board[4] && @board[4] == @board[5] && @board[3] == "X") ||
+      (@board[6] == @board[7] && @board[7] == @board[8] && @board[6] == "X") ||
+      (@board[0] == @board[1] && @board[1] == @board[2] && @board[0] == "X") ||
+      # Vertical
+      (@board[0] == @board[3] && @board[3] == @board[6] && @board[0] == "X") ||
+      (@board[1] == @board[4] && @board[4] == @board[7] && @board[1] == "X") ||
+      (@board[2] == @board[5] && @board[5] == @board[8] && @board[2] == "X") ||
+      # Diagonal
+      (@board[0] == @board[4] && @board[4] == @board[8] && @board[0] == "X") ||
+      (@board[2] == @board[4] && @board[4] == @board[6] && @board[2] == "X")
+      return "X"
+    else
+      "O"
+    end
   end
 
+  def welcome_message
+    puts "Welcome to a game of Tic Tac Toe!"
+    puts " "
+    puts "The game is turn based. Player 1 is X and Player 2 is O."
+    puts " "
+    puts "Player 1 starts by entering a number between 1-9, which equals to"
+    puts "one of the 9 indexes on the board:"
+    puts " "
+    puts " 1 | 2 | 3 "
+    puts "-----------"
+    puts " 4 | 5 | 6 "
+    puts "-----------"
+    puts " 7 | 8 | 9 "
+    puts " "
+    puts "Good luck - and may the best player win!"
+  end
 end
 
-puts "Welcome to a game of Tic Tac Toe!"
-game = TicTacToe.new
+welcome_message
+
+
+
