@@ -1,4 +1,5 @@
 class TicTacToe
+  @@results ||= { X: 0, O: 0, draw: 0 }
 
   def initialize
     @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
@@ -16,6 +17,7 @@ class TicTacToe
     puts " "
   end
 
+  # Who is the current player?
   def player
     @board.count(" ") % 2 == 0 ? "O" : "X"
   end
@@ -41,6 +43,7 @@ class TicTacToe
     end
   end
 
+  # Check if any matching combination is filled by the same value but a space " "
   def won?
     # Horizontal
     (@board[0] == @board[1] && @board[1] == @board[2] && @board[0] != " ") ||
@@ -85,12 +88,21 @@ class TicTacToe
     end
   end
 
-  def display_result
+  def change_and_display_result
     if won?
+      @@results[winner.to_sym] += 1
       puts "Player #{winner} has won! Congrats!"
     elsif draw?
+      @@results[:draw] += 1
       puts "The game is a draw :-("
     end
+
+    sleep(2)
+    puts "... which makes the results:"
+    sleep(1)
+    puts " "
+    puts "X: #{@@results[:X]} / O: #{@@results[:O]} / Draw(s): #{@@results[:draw]}"
+    puts " "
   end
 
   private
@@ -112,13 +124,15 @@ class TicTacToe
   end
 end
 
+# The methods beneath are to handle the TicTacToe class
+
 def new_game
   game = TicTacToe.new
   until game.game_over?
     game.turn
     game.display_board
   end
-  game.display_result
+  game.change_and_display_result
 end
 
 def play_again?
@@ -152,6 +166,7 @@ def play
   play if play_again?
 end
 
+# Let the game begin
 # All the sleep is for UX only
 
 puts "Welcome to a game of Tic Tac Toe!"
